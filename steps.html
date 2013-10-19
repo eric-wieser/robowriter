@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<title>Model</title>
+		<meta charset="utf-8">
+</head>
+<style>
+html, body { height: 100%; }
+body { margin: 0; padding: 0 }
+#container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+}
+</style>
+<script src="brigl/js/three.min.js"></script>
+<script src="brigl/js/prototype.js"></script>
+<script src="brigl/js/Detector.js"></script>
+<script src="brigl/js/brigl_materials.js"></script>
+<script src="brigl/js/brigl.js"></script>
+
+<script>
+var step = 0;
+var totStep = 0;
+var builder;
+var cont;
+var offset;
+
+function updateStepDisplay()
+{
+	document.getElementById("x").textContent = step+"/"+totStep;
+}
+
+function init() 
+{
+  if ( ! Detector.webgl ) { alert("no webgl"); return; }
+  
+  // capture and show log
+		BRIGL.log = function(msg){document.getElementById("logarea").innerText = msg;};
+		
+		// create the builder object to obtain the models
+		builder = new BRIGL.Builder("brigl/parts/");
+		
+		// load a model..
+		builder.loadModelByName("arm.ldr", {}, function(mesh)
+		{
+			offset = mesh.brigl.offset;
+			
+			totStep = mesh.brigl.part.numSteps;
+			step = totStep;
+			updateStepDisplay();
+			
+		  cont = new BRIGL.BriglContainer(document.getElementById("container"), mesh);     
+		  cont.render();
+		});
+}
+
+function dostep(d)
+{
+		step += d;
+		if(step<1) step = 1;
+		if(step>totStep) step = totStep;
+		builder.loadModelByName("arm.ldr", {stepLimit:step, centerOffset:offset }, function(mesh)
+				{
+				updateStepDisplay();
+				cont.setModel(mesh, false);
+		} );
+}
+
+</script>
+<body onload="init();">
+	<p id="logarea">Initializing...</p>
+	<div id="container">
+		<div id="stepbox">
+			<input type="button" onclick="dostep(-1);" value="<" />
+			<span id="x">?/?</span>
+			<input type="button" onclick="dostep(1);" value=">" />
+		</div>
+	</div>
+</body>
+</html>
