@@ -39,7 +39,6 @@ var step = 0;
 var totStep = 0;
 var builder;
 var cont;
-var offset;
 var meshcontainer;
 
 function init() 
@@ -55,11 +54,19 @@ function init()
 		builder = new BRIGL.Builder("brigl/parts/");
 		
 		// load a model..
-		builder.loadModelByName("arm.ldr", {divideSteps: true}, function(meshes)
+		builder.loadModelByName("arm.ldr", {divideSteps: true, dontCenter: true}, function(meshes)
 		{
-			window.meshes= meshes;
+			window.meshes = meshes;
+			window.fadedMeshes = meshes.map(function(m, i) {
+				var mats = new THREE.MeshFaceMaterial();
+				m.material.materials.forEach(function(mat) {
+					var newMat = mat.clone();
+					newMat.color = mat.color.clone().lerpSelf(new THREE.Color(0, 0, 0), 0.75)
+					mats.materials.push(newMat);
+				})
+				return new THREE.Mesh(m.geometry, mats);
+			})
 			var mesh = window.mesh = meshes[0]
-			offset = mesh.brigl.offset;
 			
 			totStep = mesh.brigl.part.numSteps;
 			step = totStep;
@@ -78,16 +85,17 @@ function dostep(d)
 
 function setStep(s) {
 	if(s<0) s = 0;
-	if(s>totStep) s = totStep;
+	if(s>totStep + 1) s = totStep;
 	step = s;
 
 	if(!cont) return;
 
 	cont.scene.remove(meshcontainer);
 	meshcontainer = new THREE.Object3D();
-	for(var i = 0; i < s; i++) {
-		meshcontainer.add(meshes[i]);
+	for(var i = 0; i < s - 1; i++) {
+		meshcontainer.add(fadedMeshes[i]);
 	}
+	meshcontainer.add(meshes[s - 1]);
 	cont.scene.add(meshcontainer);
 	cont.render();
 }
