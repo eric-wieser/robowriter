@@ -12,7 +12,7 @@
 	
 	<!-- Extension CSS files go here. Remove or add as needed. -->
 	<!-- <link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css"> -->
-	<!-- <link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css"> -->
+	<link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">
 	<link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
 	<link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">
 	<link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
@@ -35,11 +35,13 @@
 <section class="slide" id="title">
 	<div class="vcenter">
 		<h1>Robowriter</h1>
+		<p><strong>6B-7</strong></p>
+
 		<p>Eric Wieser<br />Oren Yefet<br />Gina Curwen</p>
 	</div>
 </section>
 
-<section class="slide">
+<section class="slide" id="aims">
 	<h2>Aims</h2>
 	<ul>
 		<li class="slide">draw</li>
@@ -48,28 +50,28 @@
 	</ul>
 </section>
 
-<section class="slide">
+<section class="slide" id="components">
+	<iframe src="steps.html"></iframe>
 	<h2>Components</h2>
-		<iframe src="steps.html"></iframe>
 	<ul>
-		<li class="slide">Arm</li>
-		<li class="slide">Gearing</li>
-		<li class="slide">Tensioning</li>
-		<li class="slide">Frame</li>
-		<li class="slide">Resets</li>
-		<li class="slide">Base</li>
-		<li class="slide">Lifter</li>
+		<li id="arm" class="slide">Arm</li>
+		<li id="gears" class="slide">Gearing<img src="images/worm.jpg" style="margin: 0; margin-left: 1em; width: 150px; display: inline-block; vertical-align: middle" /></li>
+		<li id="elastic" class="slide">Tensioning</li>
+		<li id="frame" class="slide">Frame</li>
+		<li id="resets" class="slide">Resets</li>
+		<li id="base" class="slide">Base</li>
+		<li id="lifter" class="slide">Lifter</li>
 	</ul>
 </section>
 
-<section class="slide">
-	<h2>Geometry</h2>
-	<p>Diagrams go here</p>
+<section class="slide" id="inverse-kinematics">
+	<h2>Inverse kinematics</h2>
+	<img src="images/inverse-kinematics.png"/>
 </section>
 
-<section class="slide">
+<section class="slide" id="future">
 	<h2>Future work</h2>
-	<p>Diagrams go here</p>
+	<div class="slide" id="video"><iframe class="video" width="420" height="315" src="//www.youtube.com/embed/Bs60aWyLrnI?start=16&amp;end=26&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
 </section>
 
 
@@ -106,7 +108,7 @@
 <script src="deck.js/core/deck.core.js"></script>
 <!-- <script src="deck.js/deck.iframes.js"></script> -->
 <script src="deck.js/extensions/hash/deck.hash.js"></script>
-<!-- <script src="deck.js/extensions/menu/deck.menu.js"></script> -->
+<script src="deck.js/extensions/menu/deck.menu.js"></script>
 <!-- <script src="deck.js/extensions/goto/deck.goto.js"></script> -->
 <script src="deck.js/extensions/status/deck.status.js"></script>
 <script src="deck.js/extensions/navigation/deck.navigation.js"></script>

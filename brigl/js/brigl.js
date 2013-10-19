@@ -915,13 +915,23 @@ BRIGL.Builder = Class.create({
 				BRIGL.log("Finding steps");
 				// try {
 					var group = [];
-					for(var step = 0; step < stepCount; step++) {
+					setTimeout
+					function load(step) {
 						options.step = step;
 						var meshFiller = new BRIGL.MeshFiller();
 						BRIGL.log("Generating geometry: step " + step);
 						group.push(meshFiller.partToMesh(partSpec, options, true));
+
+						// async to allow message update
+						if(step < stepCount)
+							setTimeout(function() {
+								load(step + 1)
+							}, 0);
+						else
+							callback(group);
 					}
-					callback(group);
+
+					load(0);
 				// } catch(e) {
 				// 	errorCallback("Error in partToMesh " + e);
 				// 	return;
@@ -1218,7 +1228,7 @@ BRIGL.BriglContainer = Class.create({
 		this.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 		// this.camera = new THREE.OrthographicCamera( SCREEN_WIDTH / - 2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_HEIGHT / - 2, NEAR, FAR );
 		this.scene.add(this.camera);
-		this.camera.position.set(0, 150, 400);
+		this.camera.position.set(0, 300, 1200);
 		this.camera.lookAt(this.scene.position);
 		// RENDERER
 		this.renderer = new THREE.WebGLRenderer(options);
