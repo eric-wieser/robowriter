@@ -11,15 +11,15 @@
 	<link rel="stylesheet" href="deck.js/core/deck.core.css">
 	
 	<!-- Extension CSS files go here. Remove or add as needed. -->
-	<link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">
-	<link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">
+	<!-- <link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css"> -->
+	<!-- <link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css"> -->
 	<link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
 	<link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">
 	<link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
 	<link rel="stylesheet" href="deck.js/extensions/scale/deck.scale.css">
 
 	<!-- Style theme. More available in /themes/style/ or create your own. -->
-	<link rel="stylesheet" href="deck.js/themes/style/swiss.css">
+	<link rel="stylesheet" href="deck.js/themes/style/sandstone.css">
 	<link rel="stylesheet" href="misc.css">
 	
 	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
@@ -50,15 +50,29 @@
 
 <section class="slide">
 	<h2>Components</h2>
-  	<div class="slide temp abs-bc">Tip: Hold shift to slow down animations.</div>
-  	<div class="slide temp abs-bc">Tip: Hold shift to slow down animations.</div>
-  	<div class="slide temp abs-bc">Tip: Hold shift to slow down animations.</div>
+  	<iframe src="steps.html"></iframe>
+	<ul>
+		<li class="slide">Arm</li>
+		<li class="slide">Gearing</li>
+		<li class="slide">Tensioning</li>
+		<li class="slide">Frame</li>
+		<li class="slide">Resets</li>
+		<li class="slide">Base</li>
+		<li class="slide">Lifter</li>
+	</ul>
 </section>
 
 <section class="slide">
 	<h2>Geometry</h2>
-  	<iframe src="steps.html"></iframe>
+	<p>Diagrams go here</p>
 </section>
+
+<section class="slide">
+	<h2>Future work</h2>
+	<p>Diagrams go here</p>
+</section>
+
+
 
 
 <!-- End slides. -->
@@ -77,13 +91,6 @@
 	<span class="deck-status-total"></span>
 </p>
 
-<!-- deck.goto snippet -->
-<form action="." method="get" class="goto-form">
-	<label for="goto-slide">Go to slide:</label>
-	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-	<datalist id="goto-datalist"></datalist>
-	<input type="submit" value="Go">
-</form>
 
 <!-- deck.hash snippet -->
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
@@ -97,10 +104,10 @@
 
 <!-- Extension JS files. Add or remove as needed. -->
 <script src="deck.js/core/deck.core.js"></script>
-<script src="deck.js/deck.iframes.js"></script>
+<!-- <script src="deck.js/deck.iframes.js"></script> -->
 <script src="deck.js/extensions/hash/deck.hash.js"></script>
-<script src="deck.js/extensions/menu/deck.menu.js"></script>
-<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<!-- <script src="deck.js/extensions/menu/deck.menu.js"></script> -->
+<!-- <script src="deck.js/extensions/goto/deck.goto.js"></script> -->
 <script src="deck.js/extensions/status/deck.status.js"></script>
 <script src="deck.js/extensions/navigation/deck.navigation.js"></script>
 <script src="deck.js/extensions/scale/deck.scale.js"></script>

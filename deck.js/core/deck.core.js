@@ -218,14 +218,14 @@ that use the API provided by core.
 			.scrollLeft(0).scrollTop(0);
 			
 			/*
-			Kick iframe videos, which dont like to redraw w/ transforms.
+			Kick iframe.video videos, which dont like to redraw w/ transforms.
 			Remove this if Webkit ever fixes it.
 			 */
 			$.each(slides, function(i, $el) {
 				$el.unbind('webkitTransitionEnd.deck').bind('webkitTransitionEnd.deck',
 				function(event) {
 					if ($el.hasClass($[deck]('getOptions').classes.current)) {
-						var embeds = $(this).find('iframe').css('opacity', 0);
+						var embeds = $(this).find('iframe.video').css('opacity', 0);
 						window.setTimeout(function() {
 							embeds.css('opacity', 1);
 						}, 100);
@@ -474,8 +474,8 @@ that use the API provided by core.
 	of view prevents this.
 	*/
 	$d.bind('deck.change', function(e, from, to) {
-		var oldFrames = $[deck]('getSlide', from).find('iframe'),
-		newFrames = $[deck]('getSlide', to).find('iframe');
+		var oldFrames = $[deck]('getSlide', from).find('iframe.video'),
+		newFrames = $[deck]('getSlide', to).find('iframe.video');
 		
 		oldFrames.each(function() {
 	    	var $this = $(this),

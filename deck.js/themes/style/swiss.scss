@@ -3,9 +3,11 @@
 	font-size:1.75em;
 	background:#fff;
 	
-	.slide {
+	> .slide {
 		background:#fff;
+	}
 		
+	.slide {
 		h1 {
 			color:#000;
 		}
