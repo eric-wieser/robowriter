@@ -202,7 +202,7 @@ BRIGL.MeshFiller = Class.create({
 			// new vertice
 			res = this.verticesArray.length;
 			this.verticesMap[key] = res; // store index for vertice V (since is new will be bottom of array)
-			this.verticesArray.push(v);
+			this.verticesArray.push(new THREE.Vector3(-v.x, -v.y, v.z));
 		}
 		return res;
 	},
@@ -429,7 +429,7 @@ BRIGL.MeshFiller = Class.create({
 	partToMesh: function (partSpec, options, isRoot) {
 		this.options = options;
 		var drawLines = options.drawLines ? options.drawLines : false;
-		var step = options.step ? options.step : null;
+		var step = options.step;
 		var dontCenter = options.dontCenter ? options.dontCenter : false;
 		var centerOffset = options.centerOffset ? options.centerOffset : undefined;
 		var dontSmooth = options.dontSmooth ? options.dontSmooth : undefined;
@@ -675,6 +675,10 @@ BRIGL.PartSpec = Class.create(BRIGL.BrickSpec, {
 				spec.fillMesh(transform, currentColor, meshFiller);
 			else
 				console.log("Skipping step", currentStep);
+
+			if(step == 0) {
+				console.log(currentStep);
+			}
 		}
 	},
 	wakeWaiters: function () {
@@ -906,16 +910,16 @@ BRIGL.Builder = Class.create({
 		partSpec.whenReady((function () {
 			//this.buildAndReturnMesh(partSpec, callback, options.drawLines?options.drawLines:false, options.stepLimit ? options.stepLimit : -1);
 			
-			var meshFiller = new BRIGL.MeshFiller();
 			if(options.divideSteps) {
 				var stepCount = partSpec.numSteps;
 				BRIGL.log("Finding steps");
 				// try {
-					var group = new THREE.Object3D();
+					var group = [];
 					for(var step = 0; step < stepCount; step++) {
 						options.step = step;
+						var meshFiller = new BRIGL.MeshFiller();
 						BRIGL.log("Generating geometry: step " + step);
-						group.add(meshFiller.partToMesh(partSpec, options, true));
+						group.push(meshFiller.partToMesh(partSpec, options, true));
 					}
 					callback(group);
 				// } catch(e) {
@@ -924,6 +928,7 @@ BRIGL.Builder = Class.create({
 				// }
 			}
 			else {
+					var meshFiller = new BRIGL.MeshFiller();
 				var mesh;
 				BRIGL.log("Generating geometry");
 				try {
@@ -1186,20 +1191,6 @@ BRIGL.BriglContainer = Class.create({
 	setModel: function (newmesh, resetView) {
 		var oldMesh = this.mesh;
 		this.mesh = newmesh;
-		newmesh.useQuaternion = true;
-		if(resetView) {
-			newmesh.quaternion.setFromAxisAngle(new THREE.Vector3(1,0,0), Math.PI);
-			newmesh.geometry.computeBoundingSphere();
-			// // place the camera at a right distance to gracefully fill the area
-			// var radiusDelta = newmesh.brigl.radius / 180.0; // empirical
-			// this.camera.position.set(0 * radiusDelta, 150 * radiusDelta, 400 * radiusDelta);
-			// this.camera.lookAt(this.scene.position);
-		} else {
-			if(oldMesh) {
-				newmesh.position.copy(oldMesh.position);
-				newmesh.quaternion.copy(oldMesh.quaternion);
-			}
-		}
 		this.scene.add(this.mesh);
 
 		/* show bounding sphere

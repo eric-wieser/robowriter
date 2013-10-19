@@ -40,57 +40,70 @@ var totStep = 0;
 var builder;
 var cont;
 var offset;
-
-function updateStepDisplay()
-{
-	document.getElementById("x").textContent = step+"/"+totStep;
-}
+var meshcontainer;
 
 function init() 
 {
   if ( ! Detector.webgl ) { alert("no webgl"); return; }
   
   // capture and show log
-		BRIGL.log = function(msg){document.getElementById("logarea").innerText = msg;};
+		BRIGL.log = function(msg){
+			console.info(msg);
+			document.getElementById("logarea").innerText = msg;};
 		
 		// create the builder object to obtain the models
 		builder = new BRIGL.Builder("brigl/parts/");
 		
 		// load a model..
-		builder.loadModelByName("arm.ldr", {}, function(mesh)
+		builder.loadModelByName("arm.ldr", {divideSteps: true}, function(meshes)
 		{
+			window.meshes= meshes;
+			var mesh = window.mesh = meshes[0]
 			offset = mesh.brigl.offset;
 			
 			totStep = mesh.brigl.part.numSteps;
 			step = totStep;
-			updateStepDisplay();
 			
-		  cont = new BRIGL.BriglContainer(document.getElementById("container"), mesh);     
-		  cont.render();
+			cont = new BRIGL.BriglContainer(document.getElementById("container"), mesh);
+			cont.scene.remove(mesh);
+			setStep(step);
+			BRIGL.log('Loaded');
 		});
 }
 
 function dostep(d)
 {
-		step += d;
-		if(step<1) step = 1;
-		if(step>totStep) step = totStep;
-		builder.loadModelByName("arm.ldr", {stepLimit:step, centerOffset:offset }, function(mesh)
-				{
-				updateStepDisplay();
-				cont.setModel(mesh, false);
-		} );
+	setStep(step + d);
 }
+
+function setStep(s) {
+	if(s<0) s = 0;
+	if(s>totStep) s = totStep;
+	step = s;
+
+	if(!cont) return;
+
+	cont.scene.remove(meshcontainer);
+	meshcontainer = new THREE.Object3D();
+	for(var i = 0; i < s; i++) {
+		meshcontainer.add(meshes[i]);
+	}
+	cont.scene.add(meshcontainer);
+	cont.render();
+}
+
+window.addEventListener("message", function(e) {
+  	var d = e.data;
+  	if(d.type == 'step') {
+  		setStep(d.step);
+  		console.log(d);
+  	}
+}, false);
 
 </script>
 <body onload="init();">
 	<p id="logarea">Initializing...</p>
 	<div id="container">
-		<div id="stepbox">
-			<input type="button" onclick="dostep(-1);" value="<" />
-			<span id="x">?/?</span>
-			<input type="button" onclick="dostep(1);" value=">" />
-		</div>
 	</div>
 </body>
 </html>

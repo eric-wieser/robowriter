@@ -50,7 +50,7 @@
 
 <section class="slide">
 	<h2>Components</h2>
-  	<iframe src="steps.html"></iframe>
+		<iframe src="steps.html"></iframe>
 	<ul>
 		<li class="slide">Arm</li>
 		<li class="slide">Gearing</li>
@@ -114,6 +114,30 @@
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
-	$.deck('.slide');</script>
+$.deck('.slide');
+$(document).bind('deck.change', function (e, from, to) {
+	var out = [];
+
+	function getTopSlide(step) {
+		var $slide = $.deck('getSlide', step),
+				$parents = $slide.parents('.slide');
+
+		if ($parents.length) {
+			$slide = $parents;
+		}
+
+		return $slide;
+	}
+
+	var $subslide = $.deck('getSlide', to);
+	var $slide = getTopSlide(to);
+	var step = $slide.find('.slide').index($subslide) + 1;
+
+	// Sync up iframe mathboxes to correct step
+	$slide.find('iframe').each(function () {
+		this.contentWindow && this.contentWindow.postMessage({type: 'step', step: step}, '*');
+	});
+});
+</script>
 <!-- <script src="slides.js"></script> -->
 </html>
