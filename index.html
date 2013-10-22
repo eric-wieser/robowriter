@@ -28,77 +28,115 @@
 	<!-- Required Modernizr file -->
 	<script src="modernizr.custom.js"></script>
 </head>
-<body class="deck-container">
+<body>
+<div class="deck-container">
 
-<!-- Begin slides. Just make elements with a class of slide. -->
+	<!-- Begin slides. Just make elements with a class of slide. -->
 
-<section class="slide" id="title">
-	<div class="vcenter">
-		<h1>Robowriter</h1>
-		<p><strong>6B-7</strong></p>
+	<section class="slide" id="title">
+		<div class="vcenter">
+			<h1>Robowriter</h1>
+			<p><strong>6B-7</strong></p>
 
-		<p>Eric Wieser<br />Oren Yefet<br />Gina Curwen</p>
-	</div>
-</section>
+			<p>Eric Wieser<br />Oren Yefet<br />Gina Curwen</p>
+		</div>
+	</section>
 
-<section class="slide" id="aims">
-	<h2>Aims</h2>
-	<ul>
-		<li class="slide">draw</li>
-		<li class="slide">anywhere</li>
-		<li class="slide">accurately</li>
-	</ul>
-</section>
+	<section class="slide" id="aims">
+		<h2>Aims</h2>
+		<ul>
+			<li class="slide">draw</li>
+			<li class="slide">anywhere</li>
+			<li class="slide">accurately</li>
+		</ul>
+	</section>
 
-<section class="slide" id="components">
-	<iframe src="steps.html"></iframe>
-	<h2>Components</h2>
-	<ul>
-		<li id="arm" class="slide">Arm</li>
-		<li id="gears" class="slide">Gearing<img src="images/worm.jpg" style="margin: 0; margin-left: 1em; width: 150px; display: inline-block; vertical-align: middle" /></li>
-		<li id="elastic" class="slide">Tensioning</li>
-		<li id="frame" class="slide">Frame</li>
-		<li id="resets" class="slide">Resets</li>
-		<li id="base" class="slide">Base</li>
-		<li id="lifter" class="slide">Lifter</li>
-	</ul>
-</section>
+	<section class="slide" id="components">
+		<iframe src="model.html"></iframe>
+		<h2>Components</h2>
+		<ul>
+			<li id="arm" class="slide">Arm</li>
+			<li id="gears" class="slide">Gearing<img src="images/worm.jpg" style="margin: 0; margin-left: 1em; width: 150px; display: inline-block; vertical-align: middle" /></li>
+			<li id="elastic" class="slide">Tensioning</li>
+			<li id="frame" class="slide">Frame</li>
+			<li id="resets" class="slide">Resets</li>
+			<li id="base" class="slide">Base</li>
+			<li id="lifter" class="slide">Lifter</li>
+		</ul>
+	</section>
 
-<section class="slide" id="inverse-kinematics">
-	<h2>Inverse kinematics</h2>
-	<img src="images/inverse-kinematics.png"/>
-</section>
+	<section class="slide" id="inverse-kinematics">
+		<h2>Inverse kinematics</h2>
+		<iframe src="kinematics.htm" allowtransparency="true"></iframe>
+		<div class="slide"></div>
+		<div class="slide mj temp abs-bc">$$ \class{mj-blue}{\vec{P}}, \class{mj-darkgreen}{a}, \class{mj-green}{b} $$</div>
+		<div class="slide mj temp abs-bc">$$ \class{mj-blue}{\vec{P}}, \class{mj-darkgreen}{a}, \class{mj-green}{b}, \class{mj-red2}{\alpha}, \class{mj-orange2}{\beta} $$</div>
+		<div class="slide mj temp-delay abs-bc">$$
+		    \class{mj-blue}{\vec{P}}_x = \class{mj-darkgreen}{a} \cos \class{mj-red2}{\alpha} + \class{mj-green}{b} \cos \class{mj-orange2}{\beta}  \qquad
+		    \class{mj-blue}{\vec{P}}_y = \class{mj-darkgreen}{a} \sin \class{mj-red2}{\alpha} + \class{mj-green}{b} \sin \class{mj-orange2}{\beta}
+		$$</div>
+		<div class="slide"></div>
+		<div class="slide"></div>
+		<div class="slide mj temp abs-bc">
+			$$
+			\class{mj-red2}{\alpha} = \tan^{-1} \tfrac{\class{mj-blue}{\vec{P}}_y}{\class{mj-blue}{\vec{P}}_x}
+			                        - \cos^{-1} \frac{
+			                           \class{mj-darkgreen}{a}^2 +
+			                           \lvert\class{mj-blue}{P}\rvert^2 -
+			                           \class{mj-green}{b}^2
+			                         }{
+			                           2\class{mj-darkgreen}{a}\lvert\class{mj-blue}{P}\rvert
+			                         }  \\
+			\class{mj-orange2}{\beta} = \tan^{-1} \tfrac{\class{mj-blue}{\vec{P}}_y}{\class{mj-blue}{\vec{P}}_x}
+			                          + \cos^{-1} \frac{\class{mj-green}{b}^2+\lvert\class{mj-blue}{P}\rvert^2-\class{mj-darkgreen}{a}^2}{2\class{mj-green}{b}\lvert\class{mj-blue}{P}\rvert}
+			$$
+		</div>
+		<div class="slide"></div>
+		<!-- <img src="images/inverse-kinematics.png" style="width: 75%"/>
+		<p class="slide">
+			$$
+			x = a \cos \class{mj-red2}{\alpha} + b \cos \class{mj-orange2}{\beta}  \qquad
+			y = a \sin \class{mj-red2}{\alpha} + b \sin \class{mj-orange2}{\beta}
+			$$
+		</p>
+		<p class="slide">
+			$$
+			\class{mj-red2}{\alpha} = \tan^{-1} \frac{y}{x} - \cos^{-1} \frac{a^2+c^2-b^2}{2ac}  \qquad
+			\class{mj-orange2}{\beta} = \tan^{-1} \frac{y}{x} + \cos^{-1} \frac{b^2+c^2-a^2}{2bc}
+			$$
+		</p> -->
+	</section>
 
-<section class="slide" id="future">
-	<h2>Future work</h2>
-	<div class="slide" id="video"><iframe class="video" width="420" height="315" src="//www.youtube.com/embed/Bs60aWyLrnI?start=16&amp;end=26&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
-</section>
+	<section class="slide" id="future">
+		<h2>Future work</h2>
+		<div class="slide" id="video"><iframe class="video" width="420" height="315" src="//www.youtube.com/embed/Bs60aWyLrnI?start=16&amp;end=26&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+	</section>
 
 
 
 
-<!-- End slides. -->
+	<!-- End slides. -->
 
 
-<!-- Begin extension snippets. Add or remove as needed. -->
+	<!-- Begin extension snippets. Add or remove as needed. -->
 
-<!-- deck.navigation snippet -->
-<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
-<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+	<!-- deck.navigation snippet -->
+	<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+	<a href="#" class="deck-next-link" title="Next">&#8594;</a>
 
-<!-- deck.status snippet -->
-<p class="deck-status">
-	<span class="deck-status-current"></span>
-	/
-	<span class="deck-status-total"></span>
-</p>
+	<!-- deck.status snippet -->
+	<p class="deck-status">
+		<span class="deck-status-current"></span>
+		/
+		<span class="deck-status-total"></span>
+	</p>
 
 
-<!-- deck.hash snippet -->
-<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+	<!-- deck.hash snippet -->
+	<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
-<!-- End extension snippets. -->
-
+	<!-- End extension snippets. -->
+</div>
 
 <!-- Required JS files. -->
 <script src="jquery-1.7.2.min.js"></script>
@@ -116,7 +154,6 @@
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
-$.deck('.slide');
 $(document).bind('deck.change', function (e, from, to) {
 	var out = [];
 
@@ -140,6 +177,23 @@ $(document).bind('deck.change', function (e, from, to) {
 		this.contentWindow && this.contentWindow.postMessage({type: 'step', step: step}, '*');
 	});
 });
+$.deck('.slide');
 </script>
+
+  <!-- MathJax typesetting -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "HTML-CSS": { availableFonts: ["TeX"] },
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX","output/HTML-CSS"],
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+      messageStyle: 'none',
+    });
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>  
+
+</body>
 <!-- <script src="slides.js"></script> -->
 </html>

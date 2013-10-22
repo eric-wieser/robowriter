@@ -38,14 +38,14 @@ body { margin: 0; padding: 0; overflow: hidden;}
 
 <script>
 var step = 0;
-var totStep = 0;
+var totStep = Infinity;
 var builder;
 var cont;
 var meshcontainer;
 
 function init() 
 {
-  if ( ! Detector.webgl ) { alert("no webgl"); return; }
+  if ( ! Detector.webgl ) { alert("WebGL doesn't seem to work - this is really bad!"); return; }
   
   // capture and show log
 		BRIGL.log = function(msg){
@@ -63,7 +63,7 @@ function init()
 				var mats = new THREE.MeshFaceMaterial();
 				m.material.materials.forEach(function(mat) {
 					var newMat = mat.clone();
-					newMat.color = mat.color.clone().lerpSelf(new THREE.Color(0, 0, 0), 0.75)
+					newMat.color = mat.color.clone().lerpSelf(new THREE.Color(0x000000), 0.75)
 					mats.materials.push(newMat);
 				})
 				return new THREE.Mesh(m.geometry, mats);
@@ -88,6 +88,7 @@ function setStep(s) {
 	if(s<0) s = 0;
 	if(s>totStep + 1) s = totStep;
 	step = s;
+	console.log("Step changed to", s)
 
 	if(!cont) return;
 
@@ -109,11 +110,10 @@ function setStep(s) {
 }
 
 window.addEventListener("message", function(e) {
-  	var d = e.data;
-  	if(d.type == 'step') {
-  		setStep(d.step);
-  		console.log(d);
-  	}
+	var d = e.data;
+	if(d.type == 'step') {
+		setStep(d.step);
+	}
 }, false);
 
 </script>

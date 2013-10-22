@@ -202,7 +202,7 @@ BRIGL.MeshFiller = Class.create({
 			// new vertice
 			res = this.verticesArray.length;
 			this.verticesMap[key] = res; // store index for vertice V (since is new will be bottom of array)
-			this.verticesArray.push(new THREE.Vector3(-v.x, -v.y, v.z));
+			this.verticesArray.push(v);
 		}
 		return res;
 	},
@@ -436,7 +436,7 @@ BRIGL.MeshFiller = Class.create({
 		var blackLines = options.blackLines ? options.blackLines : false;
 		var startColor = options.startColor ? options.startColor : 16;
 
-		var transform = options.startingMatrix ? options.startingMatrix : new THREE.Matrix4();
+		var transform = options.startingMatrix ? options.startingMatrix : new THREE.Matrix4().makeRotationZ(Math.PI);
 
 		var geometrySolid = new THREE.Geometry();
 
@@ -1237,7 +1237,7 @@ BRIGL.BriglContainer = Class.create({
 			
 		// LIGHT (lighting could be choosen better)
 		var light = new THREE.PointLight(0xffffff);
-		light.position.set(0,250,0);
+		light.position.set(100,250,200);
 		this.scene.add(light);
 		
 		var light1 = new THREE.DirectionalLight(0xffffff);

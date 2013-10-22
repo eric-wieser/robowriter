@@ -9,3 +9,100 @@ position: absolute;
 top: 0;
 left: 0;
 }
+.deck-container .slide h2 {
+	z-index: 10;
+	position: relative;
+}
+
+/* white outline */
+body .deck-container .slide.mj, body .deck-container .slide .mj {
+  text-shadow:
+    3px 0px 1px rgb(255, 255, 255),
+    -3px 0px 1px rgb(255, 255, 255),
+    0px -3px 1px rgb(255, 255, 255),
+    0px 3px 1px rgb(255, 255, 255),
+    2px 2px 1px rgb(255, 255, 255),
+    -2px 2px 1px rgb(255, 255, 255),
+    2px -2px 1px rgb(255, 255, 255),
+    -2px -2px 1px rgb(255, 255, 255),
+    3px 2px 1px rgb(255, 255, 255),
+    -3px 2px 1px rgb(255, 255, 255),
+    3px -2px 1px rgb(255, 255, 255),
+    -3px -2px 1px rgb(255, 255, 255),
+    1px 3px 1px rgb(255, 255, 255),
+    -1px 3px 1px rgb(255, 255, 255),
+    1px -3px 1px rgb(255, 255, 255),
+    -1px -3px 1px rgb(255, 255, 255),
+    -1px -1px 1px rgb(255, 255, 255),
+    -1px 1px 1px rgb(255, 255, 255),
+    1px -1px 1px rgb(255, 255, 255),
+    1px 1px 1px rgb(255, 255, 255);
+}
+
+/* manual layout adjustments */
+.csstransitions.csstransforms .deck-container .slide.temp,
+.csstransitions.csstransforms .deck-container .slide.temp-delay {
+  position: absolute !important;
+}
+
+/* hide past subitem if marked */
+.deck-container > .slide .deck-before.temp,
+.deck-container > .slide .deck-previous.temp,
+.deck-container > .slide.deck-before .temp:not(.slide),
+.deck-container > .slide.deck-previous .temp:not(.slide) {
+  opacity: 0;
+
+  -webkit-transition: -webkit-transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  -moz-transition: -moz-transform 300ms ease-in-out, opacity 300ms  ease-in-out;
+  transition: transform 300ms ease-in-out, opacity 300ms  ease-in-out;
+}
+
+/* hide past subitem one frame late if marked */
+.deck-container > .slide .deck-before.temp-delay,
+.deck-container > .slide.deck-before .temp-delay:not(.slide) {
+  opacity: 0;
+
+  -webkit-transition: -webkit-transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  -moz-transition: -moz-transform 300ms ease-in-out, opacity 300ms  ease-in-out;
+  transition: transform 300ms ease-in-out, opacity 300ms  ease-in-out;
+}
+
+html, body {
+  padding: 0;
+  height: 100%;
+  background: #eee;
+}
+
+/* math coloring */
+.mj-purple {
+  color: #B040D0;
+}
+.mj-green {
+  color: #50c020;
+}
+.mj-darkgreen {
+  color: #509000;
+}
+.mj-blue {
+  color: #3070F0;
+}
+.mj-red {
+  color: #C02050;
+}
+
+.mj-red2 {
+	color: #C5000B;
+}
+
+.mj-orange2 {
+	color: #FF950E;
+}
+
+.slide .abs-bc {
+	position: absolute;
+	bottom: 50px !important;
+	left: 50px !important;
+	right: 50px !important;
+	top: auto !important;
+	z-index: 20;
+}
