@@ -1,9 +1,9 @@
 robowriter
 ==========
 
-A presentation for the Engineering part IA lego project
+A presentation for the Engineering part IA lego project at Cambridge University
 
-Tool used
+Tools used
 ---------
 
 * [deck.js](http://imakewebthings.com/deck.js/) ([github](http://github.com/imakewebthings/deck.js))
