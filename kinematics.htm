@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MathBox - Example: Axis labeling.</title>
+  <title>MathBox - Inverse Kinematics</title>
 
   <!--
     This example shows labelling of axes.
@@ -186,8 +186,8 @@
       ['add', 'vector', {
         id: 'bicep',
         color: darkgreen,
-        lineWidth: 50,
-        size: 10,
+        lineWidth: 4,
+        size: 16,
         expression: function(i, end) {
           if(!end)
             return [0, 0, 0];
@@ -199,8 +199,8 @@
       ['add', 'vector', {
         id: 'forearm',
         color: green,
-        lineWidth: 50,
-        size: 10,
+        lineWidth: 4,
+        size: 16,
         expression: function(i, end) {
           if(!end)
             return bicepPosAt(thetas);
@@ -228,7 +228,6 @@
       ['add', 'vector', {
         id: 'parallel',
         color: darkgray,
-        lineWidth: 50,
         size: 10,
         expression: function(i, end) {
           var at = bicepPosAt(thetas);
@@ -244,7 +243,6 @@
         id: 'bicepAngle',
         color: orangered,
         opacity: 0.5,
-        lineWidth: 50,
         shaded: false,
         size: 10,
         domain: [[20, 40], [0, 1]],
@@ -259,7 +257,6 @@
         id: 'forearmAngle',
         color: orange,
         opacity: 0.5,
-        lineWidth: 50,
         shaded: false,
         size: 10,
         domain: [[20, 40], [0, 1]],
@@ -279,7 +276,7 @@
         id: 'badRect',
         color: black,
         n: 201,
-        lineWidth: 30,
+        lineWidth: 2,
         live: true,
         domain: [0, 4],
         expression: function(t) {
@@ -295,10 +292,10 @@
         shaded: false,
         line: true,
         mesh: false,
-        lineWidth: 5,
+        lineWidth: 1,
         zIndex: -1,
         domain: [[-π/2, π/2], [-π/2, π]],
-        n: [33, 33],
+        n: [33, 49],
         expression: function(a, b) {
           if(a > b - 0.05*π) a = b - 0.05*π;
           if(a < b - 0.95*π) a = b - 0.95*π;
@@ -331,6 +328,7 @@
         color: black,
         n: 201,
         live: true,
+        lineWidth: 2,
         domain: [0, 4],
         expression: function(t) {
           return forearmPosAt(goodRect(Math.min(t, director.clock(GOODRECT_STEP)) / 4));
