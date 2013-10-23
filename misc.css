@@ -119,6 +119,7 @@ html, body {
 	bottom: 5px;
 	right: 5px;
 	background-size: cover;
+	background-position: 50% 50%;
 }
 .fill-photo span {
 	position: absolute;
