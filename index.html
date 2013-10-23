@@ -42,26 +42,26 @@
 		</div>
 	</section>
 	<section class="slide" id="others">
-		<div class="slide fill-photo" style="width: 50%; height: 50%; top: 0; left: 0">
+		<div id="others.rack" class="slide fill-photo" style="width: 50%; height: 50%; top: 0; left: 0">
 			<div style="background-image: url(http://kisd.de/~krystian/nxt/8094.jpg)"></div>
 			<span>http://kisd.de/~krystian/nxt/</span>
 		</div>
-		<div class="slide fill-photo" style="width: 50%; height: 50%; top: 0; left: 50%">
+		<div id="others.over" class="slide fill-photo" style="width: 50%; height: 50%; top: 0; left: 50%">
 			<div style="background-image: url(http://nilsvoelker.com/nxt/penplotter/fotos/1/5.jpg)"></div>
 			<span>http://nilsvoelker.com/nxt</span>
 		</div>
-		<div class="slide fill-photo" style="width: 50%; height: 50%; top: 50%; left: 0">
+		<div id="others.paper" class="slide fill-photo" style="width: 50%; height: 50%; top: 50%; left: 0">
 			<div style="background-image: url(http://www.monobrick.dk/wp-content/uploads/2013/01/0021.jpg)"></div>
 			<span>http://monobrick.dk</span>
 		</div>
-		<div class="slide fill-photo" style="width: 50%; height: 50%; top: 50%; left: 50%">
+		<div id="others.lego" class="slide fill-photo" style="width: 50%; height: 50%; top: 50%; left: 50%">
 			<div style="background-image: url(http://www.goatrider.com/lego/Plotter_med.jpg)"></div>
 			<span>Official lego set</span>
 		</div>
 	</section>
 	
 
-	<section class="slide" id="aims" style="background-image: url(images/photo.jpg); background-size: cover; background-position: 50% 50%">
+	<section class="slide" id="photo" style="background-image: url(images/photo.jpg); background-size: cover; background-position: 50% 50%">
 		<!-- <h2>Aims</h2>
 		<ul>
 			<li class="slide">draw</li>
@@ -74,29 +74,29 @@
 		<iframe src="model.html"></iframe>
 		<h2>Components</h2>
 		<ul>
-			<li id="arm" class="slide">Arm</li>
-			<li id="gears" class="slide">Gearing<img src="images/worm.jpg" style="margin: 0; margin-left: 1em; width: 150px; display: inline-block; vertical-align: middle" /></li>
-			<li id="elastic" class="slide">Tensioning</li>
-			<li id="frame" class="slide">Frame</li>
-			<li id="resets" class="slide">Resets</li>
-			<li id="base" class="slide">Base</li>
-			<li id="lifter" class="slide">Lifter</li>
+			<li id="components.arm" class="slide">Arm</li>
+			<li id="components.gears" class="slide">Gearing<img src="images/worm.jpg" style="margin: 0; margin-left: 1em; width: 150px; display: inline-block; vertical-align: middle" /></li>
+			<li id="components.elastic" class="slide">Tensioning</li>
+			<li id="components.frame" class="slide">Frame</li>
+			<li id="components.resets" class="slide">Resets</li>
+			<li id="components.base" class="slide">Base</li>
+			<li id="components.lifter" class="slide">Lifter</li>
 		</ul>
 	</section>
 
 	<section class="slide" id="inverse-kinematics">
 		<h2>Inverse kinematics</h2>
 		<iframe src="kinematics.htm" allowtransparency="true"></iframe>
-		<div class="slide"></div>
-		<div class="slide mj temp abs-bc">$$ \class{mj-blue}{\vec{P}}, \class{mj-darkgreen}{a}, \class{mj-green}{b} $$</div>
-		<div class="slide mj temp abs-bc">$$ \class{mj-blue}{\vec{P}}, \class{mj-darkgreen}{a}, \class{mj-green}{b}, \class{mj-red2}{\alpha}, \class{mj-orange2}{\beta} $$</div>
-		<div class="slide mj temp-delay abs-bc">$$
+		<div id="inverse-kinematics.axes" class="slide"></div>
+		<div id="inverse-kinematics.geometry" class="slide mj temp abs-bc">$$ \class{mj-blue}{\vec{P}}, \class{mj-darkgreen}{a}, \class{mj-green}{b} $$</div>
+		<div id="inverse-kinematics.angles" class="slide mj temp abs-bc">$$ \class{mj-blue}{\vec{P}}, \class{mj-darkgreen}{a}, \class{mj-green}{b}, \class{mj-red2}{\alpha}, \class{mj-orange2}{\beta} $$</div>
+		<div id="inverse-kinematics.simple" class="slide mj temp-delay abs-bc">$$
 		    \class{mj-blue}{\vec{P}}_x = \class{mj-darkgreen}{a} \cos \class{mj-red2}{\alpha} + \class{mj-green}{b} \cos \class{mj-orange2}{\beta}  \qquad
 		    \class{mj-blue}{\vec{P}}_y = \class{mj-darkgreen}{a} \sin \class{mj-red2}{\alpha} + \class{mj-green}{b} \sin \class{mj-orange2}{\beta}
 		$$</div>
-		<div class="slide"></div>
-		<div class="slide"></div>
-		<div class="slide mj temp abs-bc">
+		<div id="inverse-kinematics.motion" class="slide"></div>
+		<div id="inverse-kinematics.distortion" class="slide"></div>
+		<div id="inverse-kinematics.complex" class="slide mj temp abs-bc">
 			$$
 			\class{mj-red2}{\alpha} = \tan^{-1} \tfrac{\class{mj-blue}{\vec{P}}_y}{\class{mj-blue}{\vec{P}}_x}
 			                        - \cos^{-1} \frac{
@@ -110,25 +110,12 @@
 			                          + \cos^{-1} \frac{\class{mj-green}{b}^2+\lvert\class{mj-blue}{P}\rvert^2-\class{mj-darkgreen}{a}^2}{2\class{mj-green}{b}\lvert\class{mj-blue}{P}\rvert}
 			$$
 		</div>
-		<div class="slide"></div>
-		<!-- <img src="images/inverse-kinematics.png" style="width: 75%"/>
-		<p class="slide">
-			$$
-			x = a \cos \class{mj-red2}{\alpha} + b \cos \class{mj-orange2}{\beta}  \qquad
-			y = a \sin \class{mj-red2}{\alpha} + b \sin \class{mj-orange2}{\beta}
-			$$
-		</p>
-		<p class="slide">
-			$$
-			\class{mj-red2}{\alpha} = \tan^{-1} \frac{y}{x} - \cos^{-1} \frac{a^2+c^2-b^2}{2ac}  \qquad
-			\class{mj-orange2}{\beta} = \tan^{-1} \frac{y}{x} + \cos^{-1} \frac{b^2+c^2-a^2}{2bc}
-			$$
-		</p> -->
+		<div class="slide" id="inverse-kinematics.result"></div>
 	</section>
 
 	<section class="slide" id="future">
 		<h2>Future work</h2>
-		<div class="slide" id="video"><iframe class="video" width="420" height="315" src="//www.youtube.com/embed/Bs60aWyLrnI?start=16&amp;end=26&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+		<div class="slide" id="future.video"><iframe class="video" width="420" height="315" src="//www.youtube.com/embed/Bs60aWyLrnI?start=16&amp;end=26&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
 	</section>
 
 
