@@ -15,6 +15,7 @@ left: 0;
 }
 
 /* white outline */
+.fill-photo span,
 body .deck-container .slide.mj, body .deck-container .slide .mj {
   text-shadow:
     3px 0px 1px rgb(255, 255, 255),
@@ -105,4 +106,25 @@ html, body {
 	right: 50px !important;
 	top: auto !important;
 	z-index: 20;
+}
+
+.fill-photo {
+	position: absolute !important;
+}
+
+.fill-photo div {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	bottom: 5px;
+	right: 5px;
+	background-size: cover;
+}
+.fill-photo span {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	left: 10px;
+	text-align: center;
+	font-size: 50%;
 }
